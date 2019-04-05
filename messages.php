@@ -26,14 +26,14 @@
 		<title>Messages Web Service</title>
 	</head>
 <body>
-	<form method="POST" action="get_post.php">
+	<form method="POST" action="messages.php">
 		<div>
 			<label>Enter message you want to hash</label><br>
 			<input type="text" name="message">
 		</div>
 		<input type="submit" value="Submit">
 	</form>
-		<form method="GET" action="get_post.php">
+		<form method="GET" action="messages.php">
 		<div>
 			<label>Enter the hash you want to decrypt</label><br>
 			<input type="text" name="hash">
