@@ -1,24 +1,46 @@
 <?php
+$servername = "eu-cdbr-west-02.cleardb.net";
+$username = "b7d8ffaef8f044";
+$password = "066e8219";
+$dbname = "heroku_529a72a5ae36523";
+
+
 	if(isset($_GET['hash'])){
-		//print_r($_GET);
-		$name = $_GET['hash'];
-		//echo $hash;
+		$hash = $_GET['hash'];
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+		} 
+		$sql = "SELECT Hash FROM MessageTable WHERE Hash = '".$hash."' ";
+
+		if (mysqli_query($conn, $sql)) {
+			$result = "Successfully retrieved from database";
+		} else {
+			$result = "Error while retrieving from database: " . $sql . "," . $conn->error;
+		}
 	}
 	
 	if(isset($_POST['message'])){
 		echo "Hash generated:";
-		$name = htmlentities($_POST['message']);
-		echo hash('sha256', $name);;
+		$message = htmlentities($_POST['message']);
+		$newHash = hash('sha256', $message);
+		echo $newHash;
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+		} 
+		$sql = "INSERT INTO MessageTable (Message, Hash) VALUES ('".$message."','".$newHash."')";
+
+		if (mysqli_query($conn, $sql)) {
+			$result = "Successfully added to database";
+		} else {
+			$result = "Error while adding to database: " . $sql . "," . $conn->error;
+		}
+		
 	}
-/*
-	if(isset($_REQUEST['name'])){
-		//print_r($_REQUEST);
-		$name = htmlentities($_REQUEST['name']);
-		echo $name;
-	}
-	
-	echo $_SERVER['QUERY_STRING'];
-	*/
+
 ?>
 <!DOCTYPE html>
 <html>
