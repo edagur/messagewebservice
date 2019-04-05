@@ -13,4 +13,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
     echo "oh no";
 } 
+
+$sql = "CREATE TABLE MessageTable(Message varchar(255) NOT NULL, Hash varchar(255), PRIMARY KEY (Message))";
+
+if (mysqli_query($conn, $sql)) {
+	$result = "done";
+} else {
+	$result = "Error: " . $sql . "," . $conn->error;
+}
+echo "<script type='text/javascript'>alert('$result');</script>";
+
+$conn->close();
 ?>
