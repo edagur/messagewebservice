@@ -4,6 +4,15 @@ $username = "b7d8ffaef8f044";
 $password = "066e8219";
 $dbname = "heroku_529a72a5ae36523";
 
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+		} 
+		$sql1 = "FLUSH PRIVILEGES";
+		$result = mysqli_query($conn, $sql1);
+
+
 
 	if(isset($_GET['hash'])){
 		$hash = $_GET['hash'];
