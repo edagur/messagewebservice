@@ -14,6 +14,9 @@ $dbname = "heroku_529a72a5ae36523";
 		} 
 		$sql = "SELECT Message FROM MessageTable WHERE Hash = '".$hash."' ";
 		$result = mysqli_query($conn, $sql);
+		if($result == NULL){
+			echo "not in the database";
+		}
 		while($row = mysqli_fetch_array($result)){
 			  echo  $row['Message'] ;
 		}
