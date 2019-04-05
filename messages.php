@@ -9,8 +9,11 @@ $dbname = "heroku_529a72a5ae36523";
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 		} 
-		$sql1 = "FLUSH PRIVILEGES";
+		S$sql1 = "SET @MAX_QUESTIONS=0";
+		$sql2 = "FLUSH PRIVILEGES";
 		$result = mysqli_query($conn, $sql1);
+		$result = mysqli_query($conn, $sql2);
+		
 
 
 
