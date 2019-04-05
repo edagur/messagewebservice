@@ -6,7 +6,7 @@
 	}
 	
 	if(isset($_POST['message'])){
-		print_r($_POST);
+		echo "Hash generated:";
 		$name = htmlentities($_POST['message']);
 		echo hash('sha256', $name);;
 	}
