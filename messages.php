@@ -4,16 +4,6 @@ $username = "b7d8ffaef8f044";
 $password = "066e8219";
 $dbname = "heroku_529a72a5ae36523";
 
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		// Check connection
-		if ($conn->connect_error) {
-		    die("Connection failed: " . $conn->connect_error);
-		} 
-		$sql1 = "SET @MAX_QUESTIONS=0";
-		$sql2 = "FLUSH PRIVILEGES";
-		mysqli_query($conn, $sql1);
-		mysqli_query($conn, $sql2);
-		
 	if(isset($_GET['hash'])){
 		$hash = $_GET['hash'];
 		$conn = new mysqli($servername, $username, $password, $dbname);
@@ -24,15 +14,12 @@ $dbname = "heroku_529a72a5ae36523";
 		$sql = "SELECT Message FROM MessageTable WHERE Hash = '".$hash."' ";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_array($result);
-		
 		if($row == NULL){
-			header("HTTP/1.0 404 Not Found");
-			echo 'This hash was not found';
+			   http_response_code(404);
+   				exit;
 		}else{
-		
-		echo  $row['Message'] ;
+			echo  $row['Message'] ;
 		}
-
 		$conn->close();
 	}
 	
@@ -49,15 +36,12 @@ $dbname = "heroku_529a72a5ae36523";
 		$sql = "INSERT INTO MessageTable (Message, Hash) VALUES ('".$message."','".$newHash."')";
 
 		if (mysqli_query($conn, $sql)) {
-			$result = "Successfully added to database";
 		} else {
-			$result = "Error while adding to database: " . $sql . "," . $conn->error;
+			$result = "Error while adding to database: " . $conn->error;
 		}
 		echo $result;
 		$conn->close();
-		
 	}
-
 ?>
 <!DOCTYPE html>
 <html>
