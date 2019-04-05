@@ -4,13 +4,13 @@
 		$name = $_GET['hash'];
 		//echo $hash;
 	}
-	/*
-	if(isset($_POST['name'])){
+	
+	if(isset($_POST['message'])){
 		print_r($_POST);
-		$name = htmlentities($_POST['name']);
-		echo $name;
+		$name = htmlentities($_POST['message']);
+		echo hash('sha256', $name);;
 	}
-
+/*
 	if(isset($_REQUEST['name'])){
 		//print_r($_REQUEST);
 		$name = htmlentities($_REQUEST['name']);
