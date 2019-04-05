@@ -9,14 +9,11 @@ $dbname = "heroku_529a72a5ae36523";
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 		} 
-		S$sql1 = "SET @MAX_QUESTIONS=0";
+		$sql1 = "SET @MAX_QUESTIONS=0";
 		$sql2 = "FLUSH PRIVILEGES";
-		$result = mysqli_query($conn, $sql1);
-		$result = mysqli_query($conn, $sql2);
+		mysqli_query($conn, $sql1);
+		mysqli_query($conn, $sql2);
 		
-
-
-
 	if(isset($_GET['hash'])){
 		$hash = $_GET['hash'];
 		$conn = new mysqli($servername, $username, $password, $dbname);
@@ -29,9 +26,8 @@ $dbname = "heroku_529a72a5ae36523";
 		$row = mysqli_fetch_array($result);
 		
 		if($row == NULL){
-			http_response_code(404);
-			include('messages.php'); 
-			die();
+			header("HTTP/1.0 404 Not Found");
+			echo 'This hash was not found';
 		}else{
 		
 		echo  $row['Message'] ;
