@@ -14,13 +14,13 @@ $dbname = "heroku_529a72a5ae36523";
 		} 
 		$sql = "SELECT Message FROM MessageTable WHERE Hash = '".$hash."' ";
 		$result = mysqli_query($conn, $sql);
-		$row = mysqli_fetch_array($result));
+		$row = mysqli_fetch_array($result);
 		
 		if($row == NULL){
 			echo "not in the database";
 		}else{
 		
-			echo  $row['Message'] ;
+		echo  $row['Message'] ;
 		}
 
 		$conn->close();
