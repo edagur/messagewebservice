@@ -17,7 +17,9 @@ $dbname = "heroku_529a72a5ae36523";
 		$row = mysqli_fetch_array($result);
 		
 		if($row == NULL){
-			echo "not in the database";
+			http_response_code(404);
+			include('messages.php'); 
+			die();
 		}else{
 		
 		echo  $row['Message'] ;
